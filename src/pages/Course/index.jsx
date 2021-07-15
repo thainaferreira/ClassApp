@@ -18,7 +18,7 @@ import { useClasses } from "../../providers/Class";
 const Course = () => {
   const { user, handleUser } = useUsers();
   const { course } = useCourse();
-  const { classes } = useClasses;
+  const { classes } = useClasses();
   useEffect(() => {
     handleUser();
   }, []);
@@ -72,7 +72,7 @@ const Course = () => {
         </SubContainer21>
         <BaseContainer width="330px" height="440px;">
           <Title2>Inscritos</Title2>
-          <Info>{classes.isStudent}</Info>
+          {/* <Info>{course.teacherId === user.id ? user.name }</Info> */}
         </BaseContainer>
       </SubContainer2>
     </HeaderAndAside>
