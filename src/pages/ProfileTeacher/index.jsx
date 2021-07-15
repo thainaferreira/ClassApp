@@ -25,8 +25,8 @@ const ProfileTeacher = () => {
 
   const { isLoged } = useAuth();
 
-  if (!isLoged) {
-    return <Redirect to="/register" />;
+  if (isLoged() === false) {
+    return <Redirect to="/login" />;
   }
 
   const coursesFiltered = courses.filter((course) => {

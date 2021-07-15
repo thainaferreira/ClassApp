@@ -24,8 +24,8 @@ const PageStudents = ({
 
   const { isLoged } = useAuth();
 
-  if (!isLoged) {
-    return <Redirect to="/register" />;
+  if (isLoged() === false) {
+    return <Redirect to="/login" />;
   }
 
   return (

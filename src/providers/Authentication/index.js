@@ -25,19 +25,19 @@ export const AuthenticateProvider = ({ children }) => {
         history.push("/dashboard");
       })
       .catch((err) => {
-        alert(err);
+        alert("Usuário ou senha inválidos.");
         console.log("Usuário ou senha inválidos.");
       });
   };
 
   const singUp = (data, history) => {
     api
-      .post("/users", data)
+      .post("/register", data)
       .then((response) => {
         console.log("Sucesso ao criar a conta! Faça seu login :D");
         history.push("/login");
       })
-      .catch((error) => console.log("Usuário já existe."));
+      .catch((error) => alert("Usuário já existe."));
   };
 
   return (
