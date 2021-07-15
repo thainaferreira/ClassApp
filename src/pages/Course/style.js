@@ -7,9 +7,17 @@ export const Title2 = styled.h2`
   font-weight: 500;
 `;
 
+export const Info = styled.div`
+  overflow-y: scroll;
+`;
+
 export const SubContainer1 = styled.div`
   width: 100%;
   height: 20%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 90px 0 50px;
 `;
 
 export const SubContainer2 = styled.div`
