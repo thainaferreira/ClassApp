@@ -2,6 +2,11 @@ import styled from "styled-components";
 
 export const Title = styled.h2``;
 
+export const Title2 = styled.h2`
+  color: var(--color-theme);
+  font-weight: 500;
+`;
+
 export const SubContainer1 = styled.div`
   width: 100%;
   height: 20%;
