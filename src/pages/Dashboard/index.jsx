@@ -18,7 +18,7 @@ const Dashboard = () => {
   const { courses } = useCourses();
   const { user, handleUser } = useUsers();
   const [loaded, setLoaded] = useState(false);
-  const [show, setShow] = useState(false);
+  const [createCourse, setCreateCourse] = useState(false);
 
   useEffect(() => {
     handleUser();
@@ -65,6 +65,7 @@ const Dashboard = () => {
           <HeaderAndAside>
             <Container>
               <Calendar />
+              {createCourse && <ModalCreateCourse />}
               <BaseContainer width={"195px"}>
                 <h2>Meus Cursos</h2>
                 {loaded &&
@@ -86,13 +87,14 @@ const Dashboard = () => {
                     cursor: "pointer",
                     fontWeight: "bold",
                   }}
-                  onClick={() => setShow(true)}
+                  onClick={() => setCreateCourse(!createCourse)}
                 >
-                  <img src={adicionar} alt=""/> Criar curso
+                  <img src={adicionar} alt="" /> Criar curso
                 </div>
               </BaseContainer>
             </Container>
-            {show && <ModalCreateCourse />}
+
+            {/* {show && <ModalCreateCourse />} */}
           </HeaderAndAside>
         </FullContainer>
       )}
