@@ -5,12 +5,17 @@ import { IconContext } from "react-icons";
 import { useUsers } from "../../providers/Users";
 import { useEffect, useState } from "react";
 import { useCourses } from "../../providers/Courses";
-import { useHistory } from "react-router-dom";
-
+import { Redirect, useHistory } from "react-router-dom";
+import CardAddWallet from "../CardAddWallet";
+import ModalWallet from "../ModalWallet";
+import api from "../../services/api";
 const Header = () => {
+  const token = JSON.parse(localStorage.getItem("@ClassApp:token")) || null;
   const [value, setValue] = useState("");
   const { user, handleUser } = useUsers();
   const { filterCourses } = useCourses();
+  const [open, setOpen] = useState(false);
+
   const history = useHistory();
 
   useEffect(() => {
@@ -31,6 +36,10 @@ const Header = () => {
       handleSearch();
     }
   };
+
+  // const handleWallet = (wallet) => {
+  //   <Redirect to='/'/>
+  // };
 
   return (
     <ContainerHeader>
@@ -59,7 +68,12 @@ const Header = () => {
         <div className="icon">
           <span>
             <IconContext.Provider value={{ size: "30px" }}>
-              <BiWallet />
+              <BiWallet
+                onClick={() => {
+                  setOpen(true);
+                }}
+              />
+              {/* {open && <ModalWallet />} */}
             </IconContext.Provider>
           </span>
         </div>
