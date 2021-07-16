@@ -7,6 +7,7 @@ import Calendar from "../../components/Calendar";
 import BaseContainer from "../../components/BaseContainer";
 import { useCourses } from "../../providers/Courses";
 import { useUsers } from "../../providers/Users";
+import { useClasses } from "../../providers/Class";
 import { Container, StyledContainer } from "./style";
 import adicionar from "../../assets/adicionar.svg";
 import { useEffect, useState } from "react";
@@ -18,13 +19,19 @@ const Dashboard = () => {
   const { courses } = useCourses();
   const { user, handleUser } = useUsers();
   const [loaded, setLoaded] = useState(false);
+  const [show, setShow] = useState(false);
+  const [agenda, setAgenda] = useState([]);
   const [createCourse, setCreateCourse] = useState(false);
 
   useEffect(() => {
     handleUser();
     if (loaded === false) {
-      setTimeout(() => setLoaded(true), 1000);
+      setTimeout(() => setLoaded(true), 300);
     }
+    const filtered = courses.filter((el) => {
+      return el.teacherId === user.id || el.userId === user.id;
+    });
+    setAgenda(filtered);
   }, []);
 
   if (isLoged() === false) {
@@ -42,7 +49,7 @@ const Dashboard = () => {
         <FullContainer>
           <HeaderAndAside page="home">
             <Container>
-              <Calendar />
+              <Calendar courses={agenda} />
               <StyledContainer width={"195px"} maxHeight={"420px"}>
                 <ScrollBar>
                   <h2>Cursos inscritos</h2>
@@ -64,7 +71,7 @@ const Dashboard = () => {
         <FullContainer>
           <HeaderAndAside>
             <Container>
-              <Calendar />
+              <Calendar courses={agenda} />
               {createCourse && <ModalCreateCourse />}
               <BaseContainer width={"195px"}>
                 <h2>Meus Cursos</h2>

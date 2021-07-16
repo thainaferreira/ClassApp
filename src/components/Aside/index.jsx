@@ -23,22 +23,22 @@ const Aside = ({ page }) => {
     history.push(path);
   };
   const logOut = () => {
-    localStorage.clear()
-    history.push("/")
-}
+    localStorage.clear();
+    history.push("/");
+  };
 
   return (
     <AsideContainer>
       <AsideTopContainerImage className="figure-top" />
       <AsideMainContainerImage>
-        <Li selected={page === "home"}>
+        <Li
+          selected={page === "home"}
+          onClick={() => {
+            sendTo("/dashboard");
+          }}
+        >
           <IconSelected>
-            <AiOutlineHome
-              className="figure-aside"
-              onClick={() => {
-                sendTo("/dashboard");
-              }}
-            />
+            <AiOutlineHome className="figure-aside" />
             <BallSelected selected={page === "home"} />
           </IconSelected>
           <Text>Home</Text>
@@ -55,48 +55,45 @@ const Aside = ({ page }) => {
           </IconSelected>
           <Text>Mensagens</Text>
         </Li> */}
-        <Li selected={page === "courses"}>
+        <Li
+          selected={page === "courses"}
+          onClick={() => {
+            sendTo("/courses");
+          }}
+        >
           <IconSelected>
-            <FaGraduationCap
-              className="figure-aside"
-              onClick={() => {
-                sendTo("/courses");
-              }}
-            />
+            <FaGraduationCap className="figure-aside" />
             <BallSelected selected={page === "courses"} />
           </IconSelected>
           <Text>Cursos</Text>
         </Li>
-        <Li selected={page === "students"}>
+        <Li
+          selected={page === "students"}
+          onClick={() => {
+            sendTo("/students");
+          }}
+        >
           <IconSelected>
-            <BiBookReader
-              className="figure-aside"
-              onClick={() => {
-                sendTo("/students");
-              }}
-            />
+            <BiBookReader className="figure-aside" />
             <BallSelected selected={page === "students"} />
           </IconSelected>
           <Text>Alunos</Text>
         </Li>
-        <Li selected={page === "settings"}>
+        <Li
+          selected={page === "settings"}
+          onClick={() => {
+            sendTo("/settings");
+          }}
+        >
           <IconSelected>
-            <IoIosSettings
-              className="figure-aside"
-              onClick={() => {
-                sendTo("/settings");
-              }}
-            />
+            <IoIosSettings className="figure-aside" />
             <BallSelected selected={page === "settings"} />
           </IconSelected>
           <Text>Configurações</Text>
         </Li>
       </AsideMainContainerImage>
       <AsideBottomContainerImage>
-        <RiLogoutBoxRLine
-          className="figure-bottom"
-          onClick={() => logOut()}
-        />
+        <RiLogoutBoxRLine className="figure-bottom" onClick={() => logOut()} />
       </AsideBottomContainerImage>
     </AsideContainer>
   );
