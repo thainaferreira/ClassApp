@@ -11,7 +11,7 @@ import { useAuth } from "../../providers/Authentication";
 
 import { motion } from "framer-motion";
 
-const PageStudents = ({
+const Students = ({
   qtdDiscents = 0,
   students = [
     {
@@ -38,7 +38,7 @@ const PageStudents = ({
       exit={{ x: 2000, opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <HeadAndAside>
+      <HeadAndAside page="students">
         <MainStyled>
           <div className="titulo">
             <h1>DISCENTES ({qtdDiscents})</h1>
@@ -69,4 +69,4 @@ const PageStudents = ({
   );
 };
 
-export default PageStudents;
+export default Students;

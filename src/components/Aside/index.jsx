@@ -22,6 +22,10 @@ const Aside = ({ page }) => {
   const sendTo = (path) => {
     history.push(path);
   };
+  const logOut = () => {
+    localStorage.clear()
+    history.push("/")
+}
 
   return (
     <AsideContainer>
@@ -91,9 +95,7 @@ const Aside = ({ page }) => {
       <AsideBottomContainerImage>
         <RiLogoutBoxRLine
           className="figure-bottom"
-          onClick={() => {
-            localStorage.clear();
-          }}
+          onClick={() => logOut()}
         />
       </AsideBottomContainerImage>
     </AsideContainer>

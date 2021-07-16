@@ -11,6 +11,7 @@ import Settings from "../pages/Settings";
 import ProfileTeacher from "../pages/ProfileTeacher";
 import { AnimatePresence } from "framer-motion";
 import Dashboard from "../pages/Dashboard";
+import Students from "../pages/Students";
 
 const Routes = () => {
   const location = useLocation();
@@ -46,6 +47,9 @@ const Routes = () => {
         </Route>
         <Route path="/settings">
           <Settings />
+        </Route>
+        <Route path="/students">
+          <Students />
         </Route>
         <Route path="*">
           <NotFound />
