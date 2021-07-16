@@ -25,43 +25,38 @@ const Aside = ({ page }) => {
 
   return (
     <AsideContainer>
-      <AsideTopContainerImage
-        className="figure-top"
-        onClick={() => {
-          sendTo();
-        }}
-      />
+      <AsideTopContainerImage className="figure-top" />
       <AsideMainContainerImage>
         <Li selected={page === "home"}>
           <IconSelected>
             <AiOutlineHome
               className="figure-aside"
               onClick={() => {
-                sendTo();
+                sendTo("/dashboard");
               }}
             />
             <BallSelected selected={page === "home"} />
           </IconSelected>
           <Text>Home</Text>
         </Li>
-        <Li selected={page === "message"}>
+        {/* <Li selected={page === "message"}>
           <IconSelected>
             <BiMessageDetail
               className="figure-aside"
               onClick={() => {
-                sendTo();
+                sendTo("");
               }}
             />
             <BallSelected selected={page === "message"} />
           </IconSelected>
           <Text>Mensagens</Text>
-        </Li>
+        </Li> */}
         <Li selected={page === "courses"}>
           <IconSelected>
             <FaGraduationCap
               className="figure-aside"
               onClick={() => {
-                sendTo();
+                sendTo("/courses");
               }}
             />
             <BallSelected selected={page === "courses"} />
@@ -73,7 +68,7 @@ const Aside = ({ page }) => {
             <BiBookReader
               className="figure-aside"
               onClick={() => {
-                sendTo();
+                sendTo("/students");
               }}
             />
             <BallSelected selected={page === "students"} />
@@ -85,7 +80,7 @@ const Aside = ({ page }) => {
             <IoIosSettings
               className="figure-aside"
               onClick={() => {
-                sendTo();
+                sendTo("/settings");
               }}
             />
             <BallSelected selected={page === "settings"} />
@@ -97,7 +92,7 @@ const Aside = ({ page }) => {
         <RiLogoutBoxRLine
           className="figure-bottom"
           onClick={() => {
-            sendTo();
+            localStorage.clear();
           }}
         />
       </AsideBottomContainerImage>
