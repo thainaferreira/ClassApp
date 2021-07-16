@@ -7,10 +7,11 @@ import RegisterTeacher from "../pages/RegisterTeacher";
 import Login from "../pages/Login";
 import Courses from "../pages/Courses";
 import Course from "../pages/Course";
-import Configuration from "../pages/Configuration";
+import Settings from "../pages/Settings";
 import ProfileTeacher from "../pages/ProfileTeacher";
 import { AnimatePresence } from "framer-motion";
 import Dashboard from "../pages/Dashboard";
+import Students from "../pages/Students";
 
 const Routes = () => {
   const location = useLocation();
@@ -45,7 +46,10 @@ const Routes = () => {
           <ProfileTeacher />
         </Route>
         <Route path="/settings">
-          <Configuration />
+          <Settings />
+        </Route>
+        <Route path="/students">
+          <Students />
         </Route>
         <Route path="*">
           <NotFound />

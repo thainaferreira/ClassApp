@@ -1,13 +1,13 @@
 import GlobalStyle from "./styles/global";
-import HeaderAndAside from "./components/HeaderAndAside";
 import Routes from "./routes";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   return (
     <>
+      <ToastContainer />
       <GlobalStyle />
       <Routes />
-      {/* <HeaderAndAside /> */}
     </>
   );
 };

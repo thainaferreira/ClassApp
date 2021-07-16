@@ -6,6 +6,8 @@ import FigStudent from "../../assets/student.svg";
 export const Container = styled.div`
   width: 100vw;
   height: 100vh;
+  position: relative;
+  overflow: hidden;
 
   display: flex;
   justify-content: space-between;
@@ -42,5 +44,17 @@ export const FigureStudent = styled.div`
   @media (max-width: 767px) {
     width: 100px;
     height: 100px;
+  }
+`;
+
+export const DivWaveLeft = styled.div`
+  width: 100vh;
+  transform: rotate(90deg);
+  position: absolute;
+  left: calc(-50vh);
+  top: 41vh;
+
+  @media (max-width: 600px) {
+    display: none;
   }
 `;

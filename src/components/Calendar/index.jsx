@@ -17,6 +17,7 @@ import { useState, useEffect } from "react";
 const Calendar = ({ courses }) => {
   const [actualDay, setActualDay] = useState(new Date());
   const [mappedMonth, setMappedMonth] = useState();
+  console.log(courses);
 
   const handleNext = () => {
     const next = actualDay;
@@ -73,8 +74,9 @@ const Calendar = ({ courses }) => {
         {mappedMonth &&
           mappedMonth.map((week) => (
             <CalendarDays>
-              {week.map((day) => (
+              {week.map((day, index) => (
                 <Day
+                  key={index}
                   today={compareDayWithDate(day)}
                   colorProp={courses && getColorProp(day, courses, actualDay)}
                 >

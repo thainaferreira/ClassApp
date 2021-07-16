@@ -1,41 +1,36 @@
 import styled from "styled-components";
 
-import WaveLeft from "../../assets/wave-left.svg";
-import WaveRight from "../../assets/wave-right.svg";
-
 export const Container = styled.div`
   width: 100vw;
   height: 100vh;
+  position: relative;
+  overflow: hidden;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
-export const ContainerWaveLeft = styled.div`
-  width: 200px;
-  height: 100vh;
+export const DivWaveLeft = styled.div`
+  width: 100vh;
+  transform: rotate(90deg);
   position: absolute;
-  z-index: -1;
+  left: calc(-50vh);
+  top: 41vh;
 
-  background: url(${WaveLeft}) no-repeat center;
-  background-size: cover;
-  background-position: center;
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 
-export const ContainerWaveRight = styled.div`
-  width: 200px;
-  height: 100vh;
+export const DivWaveRight = styled.div`
+  width: 100vh;
   position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 1;
+  transform: rotate(-90deg);
+  right: calc(-50vh);
+  top: 41vh;
 
-  background: url(${WaveRight}) no-repeat center;
-  background-size: cover;
-  background-position: center;
-
-  @media (max-width: 767px) {
+  @media (max-width: 600px) {
     display: none;
   }
 `;

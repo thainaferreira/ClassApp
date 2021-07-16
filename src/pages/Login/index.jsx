@@ -1,8 +1,9 @@
-import { Container } from "./style";
+import { Container, DivWaveLeft, DivWaveRight } from "./style";
 
 import FormLogin from "../../components/FormLogin";
 import SecureLogin from "../../animations/SecureLogin/secure-login.json";
 import LottieAnimation from "../../lottie";
+import Wave from "react-wavify";
 
 import { useHistory, Redirect } from "react-router-dom";
 import { useAuth } from "../../providers/Authentication";
@@ -25,7 +26,18 @@ const PageLogin = () => {
       transition={{ duration: 0.5 }}
     >
       <Container>
-        <div className="wave" />
+        <DivWaveLeft>
+          <Wave
+            fill="var(--color-theme)"
+            paused={false}
+            options={{
+              height: 20,
+              amplitude: 25,
+              speed: 0.2,
+              points: 3,
+            }}
+          />
+        </DivWaveLeft>
         <div className="form">
           <FormLogin />
         </div>
@@ -36,7 +48,18 @@ const PageLogin = () => {
             height={"300px"}
           />
         </div>
-        <div className="wave2" />
+        <DivWaveRight>
+          <Wave
+            fill="var(--color-theme)"
+            paused={false}
+            options={{
+              height: 20,
+              amplitude: 30,
+              speed: 0.2,
+              points: 3,
+            }}
+          />
+        </DivWaveRight>
       </Container>
     </motion.div>
   );

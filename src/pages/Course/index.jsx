@@ -8,20 +8,31 @@ import {
   SubContainer211,
   Title,
   Title2,
+  SubContainerInscritos,
+  SubContainerProfile,
+  SubContainerRating,
+  SubContainerRating2,
+  Rate,
 } from "./style";
 import { useUsers } from "../../providers/Users";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useCourse } from "../../providers/Course";
 import Button from "../../components/Button";
 import { useClasses } from "../../providers/Class";
+import imgUser from "../../assets/icone usuario.png";
 import { motion } from "framer-motion";
-
+import ScrollBar from "../../components/ScrollBar";
+import { AiFillStar } from "react-icons/ai";
 const Course = () => {
   const { user, handleUser } = useUsers();
   const { course } = useCourse();
-  const { classes } = useClasses();
+  const { classes, getStudent } = useClasses();
+  const [students, setStudents] = useState([]);
+  const [loaded, setLoaded] = useState(false);
+
   useEffect(() => {
     handleUser();
+    setStudents(getStudent(course.id, setLoaded));
   }, []);
 
   return (
@@ -60,26 +71,60 @@ const Course = () => {
         </SubContainer1>
         <SubContainer2>
           <SubContainer21>
-            <BaseContainer maxWidth="600px;" maxHeight="350px">
+            <BaseContainer maxWidth="600px;" maxHeight="200px">
               <Title2>Informações</Title2>
               <Info>{course.description}</Info>
             </BaseContainer>
             <SubContainer211>
               <BaseContainer width="280px" height="220px">
                 <Title2>Responsável</Title2>
-                {course.id === course}
+                <SubContainerProfile>
+                  <img
+                    src={user.profilePicture ? user.profilePicture : imgUser}
+                    alt="Profile"
+                  />
+                  {user.name}
+                </SubContainerProfile>
               </BaseContainer>
               <BaseContainer width="280px" height="220px">
-                {course.rating}
-                <div>
-                  Duração : <span>{course.totalHours} horas</span>
-                </div>
+                <SubContainerRating>
+                  <SubContainerRating2>
+                    <AiFillStar
+                      style={{ color: "yellow", width: "25px", height: "25px" }}
+                    />
+                    <AiFillStar
+                      style={{ color: "yellow", width: "25px", height: "25px" }}
+                    />
+                    <AiFillStar
+                      style={{ color: "yellow", width: "25px", height: "25px" }}
+                    />
+                    <AiFillStar
+                      style={{ color: "yellow", width: "25px", height: "25px" }}
+                    />
+                    <AiFillStar
+                      style={{ color: "yellow", width: "25px", height: "25px" }}
+                    />
+                  </SubContainerRating2>
+                  <Rate>{course.rating}</Rate>
+
+                  <div>
+                    Duração : <span>{course.totalHours} horas</span>
+                  </div>
+                </SubContainerRating>
               </BaseContainer>
             </SubContainer211>
           </SubContainer21>
           <BaseContainer width="330px" height="440px;">
-            <Title2>Inscritos</Title2>
-            {/* <Info>{course.teacherId === user.id ? user.name }</Info> */}
+            <Title2 onClick={() => console.log(students)}>Inscritos</Title2>
+            <SubContainerInscritos>
+              {loaded &&
+                students.map((key, index) => (
+                  <li>
+                    <img src={key.profilePicture || imgUser} alt="" />
+                    <span>{key.name}</span> <span>{key.surname}</span>
+                  </li>
+                ))}
+            </SubContainerInscritos>
           </BaseContainer>
         </SubContainer2>
       </HeaderAndAside>

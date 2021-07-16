@@ -6,12 +6,18 @@ export const DivHeader = styled.div`
   grid-gap: 20px;
   background-color: var(--color-theme);
   color: var(--background-primary);
-  width: 80%;
+  width: 95%;
   max-width: 1300px;
   margin: 20px auto;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px 20px 0 0;
   padding: 16px;
+  @media (max-width: 360px) {
+    width: 100%;
+    .duration {
+      display: none;
+    }
+  }
 `;
 
 export const ListContainer = styled.div`
@@ -25,7 +31,7 @@ export const ListContainer = styled.div`
   font-size: 14px;
   color: #000000;
   max-width: 1300px;
-  width: 80%;
+  width: 95%;
   padding: 8px;
   font-weight: bold;
   white-space: nowrap;
@@ -35,6 +41,16 @@ export const ListContainer = styled.div`
   cursor: pointer;
   div {
     max-width: 100px;
+  }
+
+  @media (max-width: 360px) {
+    display: flex;
+    justify-content: space-around;
+    font-size: 10px;
+    .total,
+    .star {
+      display: none;
+    }
   }
 `;
 
@@ -58,5 +74,8 @@ export const Container = styled.div`
     background-color: var(--color-theme);
 
     border-radius: 5px;
+  }
+  @media (max-width: 360px) {
+    overflow-y: unset;
   }
 `;

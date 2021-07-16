@@ -1,13 +1,13 @@
-import bgImage from "../../assets/cifrao.png";
-import Modal from "../Modal";
-import Button from "../Button";
+import bgImage from "../../../assets/cifrao.png";
+import Modal from "../../Modal";
+import Button from "../../Button";
 import { IoMdCloseCircle } from "react-icons/io";
-import { ModalWalletContainer } from "./style";
+import { ModalWalletContainer } from "../../ModalWallet/style";
 import { IconContext } from "react-icons";
-import moneyImage from "../../assets/dollar 1.png";
-import api from "../../services/api";
+import moneyImage from "../../../assets/dollar 1.png";
+import api from "../../../services/api";
 import { useState } from "react";
-const ModalWallet = ({ price }) => {
+const Modal2 = (props) => {
   const [wallet, setWallet] = useState([]);
 
   return (
@@ -17,7 +17,11 @@ const ModalWallet = ({ price }) => {
           <h2>Saldo na conta</h2>
           <span>
             <IconContext.Provider value={{ size: "30px" }}>
-              <IoMdCloseCircle onClick={() => {}} />
+              <IoMdCloseCircle
+                onClick={() => {
+                  console.log(props.handleOpen());
+                }}
+              />
             </IconContext.Provider>
           </span>
         </header>
@@ -25,7 +29,7 @@ const ModalWallet = ({ price }) => {
           <figure>
             <img src={moneyImage} alt="money" />
           </figure>
-          <span>1.743,00</span>
+          <span>{props.money}</span>
         </div>
         <div className="buttonContainer">
           <Button
@@ -46,4 +50,4 @@ const ModalWallet = ({ price }) => {
   );
 };
 
-export default ModalWallet;
+export default Modal2;

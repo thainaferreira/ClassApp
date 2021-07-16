@@ -7,6 +7,7 @@ import Calendar from "../../components/Calendar";
 import BaseContainer from "../../components/BaseContainer";
 import { useCourses } from "../../providers/Courses";
 import { useUsers } from "../../providers/Users";
+import { useClasses } from "../../providers/Class";
 import { Container, StyledContainer } from "./style";
 import adicionar from "../../assets/adicionar.svg";
 import { useEffect, useState } from "react";
@@ -19,12 +20,18 @@ const Dashboard = () => {
   const { user, handleUser } = useUsers();
   const [loaded, setLoaded] = useState(false);
   const [show, setShow] = useState(false);
+  const [agenda, setAgenda] = useState([]);
+  const [createCourse, setCreateCourse] = useState(false);
 
   useEffect(() => {
     handleUser();
     if (loaded === false) {
-      setTimeout(() => setLoaded(true), 1000);
+      setTimeout(() => setLoaded(true), 300);
     }
+    const filtered = courses.filter((el) => {
+      return el.teacherId === user.id || el.userId === user.id;
+    });
+    setAgenda(filtered);
   }, []);
 
   if (isLoged() === false) {
@@ -40,9 +47,9 @@ const Dashboard = () => {
     >
       {user.isStudent ? (
         <FullContainer>
-          <HeaderAndAside>
+          <HeaderAndAside page="home">
             <Container>
-              <Calendar />
+              <Calendar courses={agenda} />
               <StyledContainer width={"195px"} maxHeight={"420px"}>
                 <ScrollBar>
                   <h2>Cursos inscritos</h2>
@@ -64,7 +71,8 @@ const Dashboard = () => {
         <FullContainer>
           <HeaderAndAside>
             <Container>
-              <Calendar />
+              <Calendar courses={agenda} />
+              {createCourse && <ModalCreateCourse />}
               <BaseContainer width={"195px"}>
                 <h2>Meus Cursos</h2>
                 {loaded &&
@@ -86,13 +94,14 @@ const Dashboard = () => {
                     cursor: "pointer",
                     fontWeight: "bold",
                   }}
-                  onClick={() => setShow(true)}
+                  onClick={() => setCreateCourse(!createCourse)}
                 >
-                  <img src={adicionar} /> Criar curso
+                  <img src={adicionar} alt="" /> Criar curso
                 </div>
               </BaseContainer>
             </Container>
-            {show && <ModalCreateCourse />}
+
+            {/* {show && <ModalCreateCourse />} */}
           </HeaderAndAside>
         </FullContainer>
       )}

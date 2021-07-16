@@ -9,20 +9,70 @@ import LottieAnimation from "../../lottie";
 import { useHistory, Redirect } from "react-router-dom";
 import { useAuth } from "../../providers/Authentication";
 
-import { motion } from "framer-motion";
+import { useCourses } from "../../providers/Courses";
+import { useUsers } from "../../providers/Users";
+import { useClasses } from "../../providers/Class";
 
-const PageStudents = ({
-  qtdDiscents = 0,
-  students = [
-    {
-      name: "Leo",
-      email: "teste",
-      course: "programacao",
-      dateSubscribed: "02/02/2020",
-    },
-  ],
-}) => {
+import { motion } from "framer-motion";
+import api from "../../services/api";
+
+import { useEffect, useState } from "react";
+
+const Students = () => {
+  const token = JSON.parse(localStorage.getItem("@ClassApp:token")) || null;
+
+  const { courses } = useCourses();
+  const { user } = useUsers();
+  const { getStudent, classes } = useClasses();
   const history = useHistory();
+  const [loaded, setLoaded] = useState(false);
+
+  const [students, setStudents] = useState([]);
+
+  const filterStudents = () => {
+    const filtered = courses.filter((el) => {
+      return el.teacherId === user.id || el.userId === user.id;
+    });
+
+    let filteredClasses = [];
+    filtered.forEach(
+      (course) =>
+        (filteredClasses = [
+          ...filteredClasses,
+          ...classes.filter((el) => el.coursesId === course.id),
+        ])
+    );
+    let studentList = [];
+    console.log(filteredClasses);
+    filteredClasses.forEach((el) => {
+      el.studentList.forEach((student) => {
+        if (!studentList.includes(student)) {
+          studentList = [...studentList, student];
+        }
+      });
+    });
+
+    let studentsFetched = [];
+    console.log(studentList);
+    studentList.forEach((student) => {
+      api
+        .get(`/users/${student}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => studentsFetched.push(res.data));
+      console.log("fetch");
+    });
+    setStudents(studentsFetched);
+    setTimeout(() => setLoaded(true), 400);
+  };
+
+  useEffect(() => {
+    if (!loaded) {
+      filterStudents();
+    }
+  }, [loaded]);
 
   const { isLoged } = useAuth();
 
@@ -38,23 +88,24 @@ const PageStudents = ({
       exit={{ x: 2000, opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <HeadAndAside>
+      <HeadAndAside page="students">
         <MainStyled>
           <div className="titulo">
-            <h1>DISCENTES ({qtdDiscents})</h1>
+            <h1>DISCENTES</h1>
           </div>
           <ScrollBar className="cards">
-            {students.map((student, index) => {
-              return (
-                <CardInfo
-                  name={student.name}
-                  email={student.email}
-                  course={student.course}
-                  dateSubscribed={student.dateSubscribed}
-                  key={index}
-                />
-              );
-            })}
+            {loaded &&
+              students.map((student, index) => {
+                return (
+                  <CardInfo
+                    name={student.name}
+                    email={student.email}
+                    course={student.course}
+                    dateSubscribed={student.dateSubscribed}
+                    key={index}
+                  />
+                );
+              })}
           </ScrollBar>
           <div className="animacao">
             <LottieAnimation
@@ -69,4 +120,4 @@ const PageStudents = ({
   );
 };
 
-export default PageStudents;
+export default Students;
