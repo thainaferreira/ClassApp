@@ -8,19 +8,26 @@ import {
   SubContainer211,
   Title,
   Title2,
+  SubContainerInscritos,
+  SubContainerProfile,
 } from "./style";
 import { useUsers } from "../../providers/Users";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useCourse } from "../../providers/Course";
 import Button from "../../components/Button";
 import { useClasses } from "../../providers/Class";
+import imgUser from "../../assets/icone usuario.png";
 
 const Course = () => {
   const { user, handleUser } = useUsers();
   const { course } = useCourse();
-  const { classes } = useClasses();
+  const { classes, getStudent } = useClasses();
+  const [students, setStudents] = useState([]);
+  const [loaded, setLoaded] = useState(false);
+
   useEffect(() => {
     handleUser();
+    setStudents(getStudent(course.id, setLoaded));
   }, []);
 
   return (
@@ -60,7 +67,13 @@ const Course = () => {
           <SubContainer211>
             <BaseContainer width="280px" height="220px">
               <Title2>Responsável</Title2>
-              {course.id === course}
+              <SubContainerProfile>
+                <img
+                  src={user.profilePicture ? user.profilePicture : imgUser}
+                  alt="Profile"
+                />
+                {user.name}
+              </SubContainerProfile>
             </BaseContainer>
             <BaseContainer width="280px" height="220px">
               {course.rating}
@@ -71,8 +84,16 @@ const Course = () => {
           </SubContainer211>
         </SubContainer21>
         <BaseContainer width="330px" height="440px;">
-          <Title2>Inscritos</Title2>
-          {/* <Info>{course.teacherId === user.id ? user.name }</Info> */}
+          <Title2 onClick={() => console.log(students)}>Inscritos</Title2>
+          <SubContainerInscritos>
+            {loaded &&
+              students.map((key, index) => (
+                <li>
+                  <img src={key.profilePicture} alt="" />{" "}
+                  <span>{key.name}</span> <span>{key.surname}</span>
+                </li>
+              ))}
+          </SubContainerInscritos>
         </BaseContainer>
       </SubContainer2>
     </HeaderAndAside>

@@ -35,6 +35,32 @@ export const SubContainer21 = styled.div`
   height: 100%;
 `;
 
+export const SubContainerInscritos = styled.ul`
+  margin: 0 auto;
+  li {
+    margin-top: 20px;
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+
+    span:nth-child(1) {
+      margin-left: 10px;
+    }
+
+    span {
+      display: flex;
+      align-items: center;
+      margin-left: 7px;
+    }
+
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 20px;
+    }
+  }
+`;
+
 export const SubContainer211 = styled.div`
   display: flex;
   justify-content: space-evenly;
@@ -42,4 +68,17 @@ export const SubContainer211 = styled.div`
   margin-top: 15px;
   width: 100%;
   height: 90%;
+`;
+
+export const SubContainerProfile = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+  }
 `;
