@@ -19,6 +19,10 @@ export const AsideContainer = styled.aside`
     margin-bottom: 0;
     margin-top: 90px;
   }
+  @media (max-width: 360px) {
+    margin: none;
+    border-radius: unset;
+  }
 `;
 
 export const AsideMainContainerImage = styled.div`

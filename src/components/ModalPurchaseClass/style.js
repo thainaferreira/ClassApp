@@ -50,7 +50,7 @@ export const Container = styled.div`
     flex-direction: column;
 
     h3 {
-      font-size: 0.9rem;
+      font-size: 1.5rem;
     }
 
     p {
@@ -103,6 +103,7 @@ export const ContainerInput = styled.div`
   height: 80px;
   max-height: 80px;
   border-radius: 10px;
-
+  padding: 5px;
   background-color: var(--background-primary);
+  overflow-y: scroll;
 `;

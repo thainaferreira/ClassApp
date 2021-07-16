@@ -9,8 +9,6 @@ import {
   IconUser,
   ContainerInput,
 } from "./style";
-
-import InputTextArea from "../InputTextArea";
 import Button from "../Button";
 
 const ModalPurchaseClass = ({
@@ -19,13 +17,20 @@ const ModalPurchaseClass = ({
   qtdHours = 20,
   rating = "4.0",
   user = "Leonardo Junior",
+  onclick,
+  description,
+  handleCourse,
+  item
+  
 }) => {
+  
+
   return (
     <>
       <Container>
         <ContainerRow>
           <h3>{title}</h3>
-          <IconClose />
+          <IconClose onClick={onclick}/>
         </ContainerRow>
 
         <ContainerRow className="RowIcons">
@@ -56,13 +61,18 @@ const ModalPurchaseClass = ({
         <ContainerRow className="RowInputInfo">
           <p>Descrição do curso:</p>
           <ContainerInput>
-            <InputTextArea />
+           <div>
+             <p>
+             {description}
+             </p>
+           </div>
           </ContainerInput>
         </ContainerRow>
 
         <ContainerRow className="RowButton">
-          <Button colorBG={"var(--color-theme)"}>Comprar</Button>
+          <Button colorBG={"var(--color-theme)"} onclick={()=> handleCourse(item)}>Comprar</Button>
         </ContainerRow>
+       
       </Container>
     </>
   );

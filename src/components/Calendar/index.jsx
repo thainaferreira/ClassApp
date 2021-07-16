@@ -73,8 +73,9 @@ const Calendar = ({ courses }) => {
         {mappedMonth &&
           mappedMonth.map((week) => (
             <CalendarDays>
-              {week.map((day) => (
+              {week.map((day, index) => (
                 <Day
+                  key={index}
                   today={compareDayWithDate(day)}
                   colorProp={courses && getColorProp(day, courses, actualDay)}
                 >

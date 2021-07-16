@@ -31,6 +31,7 @@ import InputSelect from "../InputSelect";
 import InputTextArea from "../InputTextArea";
 import SelectOption from "../SelectOption";
 import api from "../../services/api";
+import { toast } from "react-toastify";
 
 const ModalCreateCourse = ({ handleModal }) => {
   const { user, handleUser } = useUsers();
@@ -93,9 +94,10 @@ const ModalCreateCourse = ({ handleModal }) => {
             },
             headers
           )
-        );
+        )
     } else {
       setError(true);
+      toast.error("Tente novamente")
     }
   };
 

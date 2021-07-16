@@ -5,11 +5,22 @@ import {IconContext} from "react-icons"
 import {CoursesContainer, ContainerButton} from "./style"
 import ModalCreateCourse from "../ModalCreateCourse"
 import Modal from "../Modal"
-import { useState } from "react"
+import { useState , useEffect} from "react"
+import { useUsers} from "../../providers/Users"
+
+
+
 
 const FilterCourses = () => {
 
   const [modal, setModal] = useState(false)
+  
+  const { user, handleUser } = useUsers();
+ 
+  useEffect(() => {
+    handleUser();
+    console.log(user)
+  }, []);
 
   const handleModal = ()=> {
     setModal(!modal)
@@ -19,21 +30,15 @@ const FilterCourses = () => {
     <ContainerFilter>
       <CoursesContainer>
       <h1>Cursos</h1>
-      <span>
-      <IconContext.Provider value={{ size: "25px", color: "var(--hightlight-shadow)" }}>
-              <FaFilter />
-            </IconContext.Provider>
-      </span>
-      <h3>Filtrar</h3>
       </CoursesContainer>
       <ContainerButton>
-        <Button fontSize="24px" height="40px" width="215px" colorBG="var(--call-to-action)" onclick={handleModal}>Criar curso</Button>
+      {!user.isStudent && <button onClick={handleModal}>Criar curso</button>}
       </ContainerButton>
       {modal && <ModalContainer>
         <ModalCreateCourse handleModal={handleModal}></ModalCreateCourse>
       </ModalContainer>}
     </ContainerFilter>
   )
-}
+}           
 
 export default FilterCourses
