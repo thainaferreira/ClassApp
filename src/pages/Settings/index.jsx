@@ -8,6 +8,9 @@ import {
   ChangeAvatar,
   Title,
   ButtonContainer,
+  ContainerInfo,
+  Image,
+  ContainerImages,
 } from "./style";
 import imgCourses from "../../assets/imgCourses.png";
 import imgUser from "../../assets/icone usuario.png";
@@ -17,7 +20,7 @@ import { useState, useEffect } from "react";
 import { useUsers } from "../../providers/Users";
 import { motion } from "framer-motion";
 
-const Configuration = () => {
+const Settings = () => {
   const { user } = useUsers();
 
   return (
@@ -30,28 +33,30 @@ const Configuration = () => {
       <HeaderAndAside page="settings">
         <Title>Configurações</Title>
         <ContainerConfiguration>
-          <img className="imgBack" src={imgCourses} alt="imagem background" />
-          <EditInformation user={user} />
+          <ContainerInfo>
+            <EditInformation user={user} />
+          </ContainerInfo>
 
-          <ChangeAvatar>
-            <h2>Mudar avatar</h2>
-            <img
-              src={user.profilePicture ? user.profilePicture : imgUser}
-              alt="Profile"
-            />
-            <ButtonContainer>
-              <Button width="90%" colorBG="var(--hightlight-shadow)">
-                Selecionar uma foto
-              </Button>
-              <Button width="90%" colorBG="var(--font-color)">
-                Atualizar avatar
-              </Button>
-            </ButtonContainer>
-          </ChangeAvatar>
+          <ContainerImages>
+            <ChangeAvatar>
+              <h2>Mudar avatar</h2>
+              <img src={user.profilePicture || imgUser} alt="Profile" />
+              <ButtonContainer>
+                <Button width="90%" colorBG="var(--hightlight-shadow)">
+                  Selecionar uma foto
+                </Button>
+                <Button width="90%" colorBG="var(--font-color)">
+                  Atualizar avatar
+                </Button>
+              </ButtonContainer>
+            </ChangeAvatar>
+
+            <Image src={imgCourses} alt="imagem background" />
+          </ContainerImages>
         </ContainerConfiguration>
       </HeaderAndAside>
     </motion.div>
   );
 };
 
-export default Configuration;
+export default Settings;
