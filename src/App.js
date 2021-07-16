@@ -1,12 +1,13 @@
 import GlobalStyle from "./styles/global";
+import Routes from "./routes";
 
-function App() {
+const App = () => {
   return (
     <>
       <GlobalStyle />
-      <h1>Hi Lorena</h1>
+      <Routes />
     </>
   );
-}
+};
 
 export default App;
