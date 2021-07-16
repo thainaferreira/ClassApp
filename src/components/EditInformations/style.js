@@ -5,8 +5,8 @@ export const Container = styled.form`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-end;
-  width: 400px;
-  height: 550px;
+  width: 100%;
+  height: 100%;
   background-color: var(--background-secondary);
   padding-right: 10px;
   border-radius: 15px;
@@ -28,13 +28,17 @@ export const SubContainer11 = styled.div`
   align-items: center;
 
   .figure {
-    width: 70%;
-    height: 70%;
+    width: 80%;
+    height: 80%;
   }
 `;
 
 export const Title = styled.h4`
-  font-size: 18px;
+  font-size: 24px;
+
+  @media (max-width: 1440px) {
+    font-size: 18px;
+  }
 `;
 
 export const SubContainer2 = styled.div`
@@ -42,9 +46,13 @@ export const SubContainer2 = styled.div`
   align-items: center;
   justify-content: space-between;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 17px;
   border-bottom: 2px solid var(--hightlight-shadow);
   width: 90%;
+
+  @media (max-width: 1440px) {
+    font-size: 14px;
+  }
 `;
 
 export const SubContainer21 = styled.div`
@@ -52,8 +60,8 @@ export const SubContainer21 = styled.div`
   align-items: center;
 
   .figure {
-    width: 17px;
-    height: 17px;
+    width: 20px;
+    height: 20px;
     color: #78848d;
   }
 `;

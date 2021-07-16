@@ -40,7 +40,7 @@ const Dashboard = () => {
     >
       {user.isStudent ? (
         <FullContainer>
-          <HeaderAndAside>
+          <HeaderAndAside page="home">
             <Container>
               <Calendar />
               <StyledContainer width={"195px"} maxHeight={"420px"}>
