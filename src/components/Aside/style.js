@@ -11,11 +11,13 @@ export const AsideContainer = styled.aside`
   align-items: center;
   border-radius: 20px;
   color: #020340;
-  @media (min-width: 320px) and (max-width: 768px) {
-    height: 15%;
+  @media (max-width: 768px) {
+    height: 50px;
     width: 100%;
     padding: 8px 0;
     flex-direction: row;
+    margin-bottom: 0;
+    margin-top: 90px;
   }
 `;
 
@@ -39,7 +41,7 @@ export const AsideMainContainerImage = styled.div`
     align-items: center;
   }
 
-  @media (min-width: 320px) and (max-width: 768px) {
+  @media (max-width: 768px) {
     flex-direction: row;
   }
 `;
@@ -60,6 +62,10 @@ export const BallSelected = styled.div`
     position: absolute;
     bottom: -25px;
     display: ${({ selected }) => !selected && "none"};
+  }
+
+  @media (max-width: 768px) {
+    display: none;
   }
 `;
 
@@ -104,7 +110,7 @@ export const Li = styled.li`
   @media (max-width: 1300px) {
     justify-content: center;
   }
-  @media (min-width: 320px) and (max-width: 768px) {
+  @media (max-width: 768px) {
     margin: 0 8px;
   }
 `;
