@@ -1,5 +1,5 @@
-import { Container, ContainerWaveLeft, FigureStudent } from "./style";
-
+import { Container, DivWaveLeft, FigureStudent } from "./style";
+import Wave from "react-wavify";
 import FormTeacher from "../../components/FormTeacher";
 import FormStudent from "../../components/FormStudent";
 
@@ -25,7 +25,18 @@ const RegisterStudent = () => {
       transition={{ duration: 0.5 }}
     >
       <Container>
-        <ContainerWaveLeft />
+        <DivWaveLeft>
+          <Wave
+            fill="var(--color-theme)"
+            paused={false}
+            options={{
+              height: 0,
+              amplitude: 30,
+              speed: 0.2,
+              points: 3,
+            }}
+          />
+        </DivWaveLeft>
         <FormStudent style={{ zIndex: 2 }} />
         <FigureStudent />
       </Container>

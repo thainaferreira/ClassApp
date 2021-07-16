@@ -1,15 +1,36 @@
-import { ContainerHeader } from "./style";
+import { ContainerHeader, SearchIcon, Search } from "./style";
 import imgUser from "../../assets/icone usuario.png";
 import { BiWallet, BiSearch } from "react-icons/bi";
 import { IconContext } from "react-icons";
 import { useUsers } from "../../providers/Users";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useCourses } from "../../providers/Courses";
+import { useHistory } from "react-router-dom";
 
 const Header = () => {
+  const [value, setValue] = useState("");
   const { user, handleUser } = useUsers();
+  const { filterCourses } = useCourses();
+  const history = useHistory();
+
   useEffect(() => {
     handleUser();
   }, []);
+
+  const handleInput = (e) => {
+    setValue(e.target.value);
+  };
+
+  const handleSearch = () => {
+    filterCourses(value);
+    history.push("/courses");
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
 
   return (
     <ContainerHeader>
@@ -17,12 +38,23 @@ const Header = () => {
         <div className="input">
           <span className="search">
             <IconContext.Provider value={{ size: "28px" }}>
-              <BiSearch />
+              <Search onClick={() => handleSearch()} />
             </IconContext.Provider>
           </span>
-          <input type="text" placeholder="Procurar Curso" />
+          <input
+            type="text"
+            placeholder="Procurar Curso"
+            onChange={(e) => handleInput(e)}
+            onKeyPress={(e) => handleKeyPress(e)}
+            value={value}
+          />
         </div>
       </div>
+      <SearchIcon>
+        <IconContext.Provider value={{ size: "28px" }}>
+          <BiSearch />
+        </IconContext.Provider>
+      </SearchIcon>
       <div className="profileContainer">
         <div className="icon">
           <span>
@@ -41,7 +73,7 @@ const Header = () => {
           )}
         </div>
         <div className="imgContainer">
-          <img src={imgUser} alt="" />
+          <img src={user.profilePicture || imgUser} alt="profile" />
         </div>
       </div>
     </ContainerHeader>
