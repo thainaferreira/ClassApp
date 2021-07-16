@@ -120,7 +120,7 @@ const Course = () => {
               {loaded &&
                 students.map((key, index) => (
                   <li>
-                    <img src={key.profilePicture} alt="" />
+                    <img src={key.profilePicture || imgUser} alt="" />
                     <span>{key.name}</span> <span>{key.surname}</span>
                   </li>
                 ))}
