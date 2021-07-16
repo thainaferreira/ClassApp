@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { BiSearch } from "react-icons/bi";
 
 export const ContainerHeader = styled.header`
   position: relative;
@@ -9,6 +10,10 @@ export const ContainerHeader = styled.header`
   border-radius: 20px;
   //background color cinza só para ter uma visualização por enquanto
   background-color: var(--background-secondary);
+
+  @media (max-width: 700px) {
+    justify-content: space-between;
+  }
 
   @media only screen and (max-width: 360px) {
     .inputContainer {
@@ -24,6 +29,11 @@ export const ContainerHeader = styled.header`
     align-items: center;
     height: 100%;
     width: 68%;
+
+    @media (max-width: 700px) {
+      display: none;
+    }
+
     .input {
       position: relative;
       display: flex;
@@ -34,6 +44,11 @@ export const ContainerHeader = styled.header`
       border: 1px solid var(--hightlight-shadow);
       box-sizing: border-box;
       border-radius: 8px;
+
+      @media (max-width: 700px) {
+        display: none;
+      }
+
       .search {
         width: 20px;
         height: 20px;
@@ -64,17 +79,23 @@ export const ContainerHeader = styled.header`
     img {
       width: 50px;
       height: 50px;
+      border-radius: 50%;
     }
   }
 
   .name {
-    p {
-      font-style: normal;
-      font-weight: normal;
-      font-size: 18px;
-      line-height: 24px;
-
+    h2 {
+      font-weight: 600;
+      font-size: 24px;
       color: #00171f;
+
+      @media (max-width: 860px) {
+        font-size: 20px;
+      }
+
+      @media (max-width: 700px) {
+        display: none;
+      }
     }
   }
 
@@ -82,4 +103,18 @@ export const ContainerHeader = styled.header`
     span {
     }
   }
+`;
+
+export const SearchIcon = styled.div`
+  display: none;
+
+  @media (max-width: 700px) {
+    display: block;
+    align-self: center;
+    padding: 20px;
+  }
+`;
+
+export const Search = styled(BiSearch)`
+  cursor: pointer;
 `;

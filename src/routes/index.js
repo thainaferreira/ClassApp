@@ -7,6 +7,8 @@ import RegisterTeacher from "../pages/RegisterTeacher";
 import Login from "../pages/Login";
 import Courses from "../pages/Courses";
 import Course from "../pages/Course";
+import Configuration from "../pages/Configuration";
+import ProfileTeacher from "../pages/ProfileTeacher";
 import { AnimatePresence } from "framer-motion";
 import Dashboard from "../pages/Dashboard";
 
@@ -30,14 +32,20 @@ const Routes = () => {
         <Route path="/login">
           <Login />
         </Route>
+        <Route path="/dashboard">
+          <Dashboard />
+        </Route>
         <Route path="/courses">
           <Courses />
         </Route>
         <Route path="/course">
           <Course />
         </Route>
-        <Route path="/dashboard">
-          <Dashboard />
+        <Route path="/profile/:id">
+          <ProfileTeacher />
+        </Route>
+        <Route path="/settings">
+          <Configuration />
         </Route>
         <Route path="*">
           <NotFound />

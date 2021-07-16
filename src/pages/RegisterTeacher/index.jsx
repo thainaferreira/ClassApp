@@ -1,4 +1,5 @@
-import { Container, ContainerWaveRight, ContainerWaveLeft } from "./style";
+import { Container, DivWaveLeft, DivWaveRight } from "./style";
+import Wave from "react-wavify";
 
 import FormTeacher from "../../components/FormTeacher";
 
@@ -24,9 +25,31 @@ const RegisterTeacher = () => {
       transition={{ duration: 0.5 }}
     >
       <Container>
-        <ContainerWaveLeft />
+        <DivWaveLeft>
+          <Wave
+            fill="var(--color-theme)"
+            paused={false}
+            options={{
+              height: 0,
+              amplitude: 25,
+              speed: 0.2,
+              points: 3,
+            }}
+          />
+        </DivWaveLeft>
         <FormTeacher style={{ zIndex: 2 }} />
-        <ContainerWaveRight />
+        <DivWaveRight>
+          <Wave
+            fill="var(--color-theme)"
+            paused={false}
+            options={{
+              height: 0,
+              amplitude: 30,
+              speed: 0.2,
+              points: 3,
+            }}
+          />
+        </DivWaveRight>
       </Container>
     </motion.div>
   );

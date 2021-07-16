@@ -1,4 +1,5 @@
 import GlobalStyle from "./styles/global";
+import HeaderAndAside from "./components/HeaderAndAside";
 import Routes from "./routes";
 
 const App = () => {
@@ -6,6 +7,7 @@ const App = () => {
     <>
       <GlobalStyle />
       <Routes />
+      {/* <HeaderAndAside /> */}
     </>
   );
 };
