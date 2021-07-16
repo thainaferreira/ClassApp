@@ -8,8 +8,15 @@ export const Title2 = styled.h2`
 `;
 
 export const Info = styled.div`
+  display: flex;
+  overflow: hidden;
   overflow-y: scroll;
+  width: 100%;
+  height: 80%;
+  margin-top: 20px;
 `;
+
+export const Rate = styled.div``;
 
 export const SubContainer1 = styled.div`
   width: 100%;
@@ -81,4 +88,21 @@ export const SubContainerProfile = styled.div`
     height: 100px;
     border-radius: 50px;
   }
+`;
+
+export const SubContainerRating = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  div {
+    margin-top: 20px;
+  }
+`;
+
+export const SubContainerRating2 = styled.div`
+  display: flex;
 `;
