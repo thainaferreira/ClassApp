@@ -1,9 +1,13 @@
 import Button from "../../components/Button";
-import { AnimationContainer, Container, HomeContainer } from "./style";
-import FullContainer from "../../components/FullContainer";
+import {
+  AnimationContainer,
+  Container,
+  Container2,
+  HomeContainer,
+  LinkStyle,
+} from "./style";
 import LottieAnimation from "../../lottie";
 import distanceEducation from "../../animations/HomeAnimation/distanceEducation.json";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const LandingPage = () => {
@@ -14,47 +18,46 @@ const LandingPage = () => {
       exit={{ x: 2000, opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <FullContainer>
-        <HomeContainer>
-          <Container>
-            <h1>CLASSAPP</h1>
-            <p>
-              Descubra de forma rápida e prática novas formas de aprender o que
-              você mais deseja com o CLASSAPP, o seu mais novo aplicativo de
-              ensino. Clique abaixo para se registrar e conhecer seus
-              professores.
-            </p>
-            <Link to="/register">
-              <Button
-                color={"#FDFDFF"}
-                colorBG={"#F35D56"}
-                height={"40px"}
-                width={"215px"}
-                fontSize={"18px"}
-              >
-                REGISTRAR
-              </Button>
-            </Link>
-            <Link to="/login">
-              <Button
-                color={"#F35D56"}
-                height={"40px"}
-                width={"215px"}
-                fontSize={"18px"}
-              >
-                ENTRAR
-              </Button>
-            </Link>
-          </Container>
+      <HomeContainer>
+        <Container>
+          <h1>CLASSAPP</h1>
+          <p>
+            Descubra de forma rápida e prática novas formas de aprender o que
+            você mais deseja com o CLASSAPP, o seu mais novo aplicativo de
+            ensino. Clique abaixo para se registrar e conhecer seus professores.
+          </p>
+          <LinkStyle to="/register">
+            <Button
+              color={"#FDFDFF"}
+              colorBG={"#F35D56"}
+              height="100%"
+              width="100%"
+              fontSize={"18px"}
+            >
+              REGISTRAR
+            </Button>
+          </LinkStyle>
+          <LinkStyle to="/login">
+            <Button
+              color={"#F35D56"}
+              height="100%"
+              width="100%"
+              fontSize={"18px"}
+            >
+              ENTRAR
+            </Button>
+          </LinkStyle>
+        </Container>
+        <Container2>
           <AnimationContainer>
             <LottieAnimation
               lotti={distanceEducation}
-              height={523}
-              width={721}
+              width="100%"
+              height="100%"
             />
           </AnimationContainer>
-        </HomeContainer>
-      </FullContainer>
+        </Container2>
+      </HomeContainer>
     </motion.div>
   );
 };
