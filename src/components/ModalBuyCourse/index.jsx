@@ -9,14 +9,15 @@ const ModalBuyCourse = ({
   nomeCurso = "Não Informado",
   valorCurso = 0.0,
   dataInício = "Não Informado",
-  saldo = -1,
+  saldo = -1, 
+  onclick
 }) => {
   return (
     <>
       <Modal backgroundImage={Book}>
         <Row>
           <h2>Comprar Curso</h2>
-          <IconClose />
+          <IconClose onClick={onclick}/>
         </Row>
         <Row>
           <p>Nome: {nomeCurso}</p>

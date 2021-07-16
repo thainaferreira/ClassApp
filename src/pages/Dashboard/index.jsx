@@ -88,7 +88,7 @@ const Dashboard = () => {
                   }}
                   onClick={() => setShow(true)}
                 >
-                  <img src={adicionar} /> Criar curso
+                  <img src={adicionar} alt=""/> Criar curso
                 </div>
               </BaseContainer>
             </Container>
