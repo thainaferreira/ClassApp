@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 const NotFound = () => {
   const history = useHistory();
 
-  setTimeout(() => history.push("/"), 4000);
+  setTimeout(() => history.push("/dashboard"), 4000);
 
   return (
     <motion.div
