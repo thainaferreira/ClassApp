@@ -9,6 +9,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import CardAddWallet from "../CardAddWallet";
 import ModalWallet from "../ModalWallet";
 import api from "../../services/api";
+import Modal2 from "./Modal";
 const Header = () => {
   const token = JSON.parse(localStorage.getItem("@ClassApp:token")) || null;
   const [value, setValue] = useState("");
@@ -37,9 +38,9 @@ const Header = () => {
     }
   };
 
-  // const handleWallet = (wallet) => {
-  //   <Redirect to='/'/>
-  // };
+  const handleOpen = () => {
+    setOpen(!open);
+  };
 
   return (
     <ContainerHeader>
@@ -70,10 +71,10 @@ const Header = () => {
             <IconContext.Provider value={{ size: "30px" }}>
               <BiWallet
                 onClick={() => {
-                  setOpen(true);
+                  handleOpen();
                 }}
               />
-              {/* {open && <ModalWallet />} */}
+              {open && <Modal2 handleOpen={handleOpen} money={user.money} />}
             </IconContext.Provider>
           </span>
         </div>
