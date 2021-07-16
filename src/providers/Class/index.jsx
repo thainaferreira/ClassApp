@@ -5,18 +5,21 @@ export const ClassesContext = createContext();
 
 export const ClassProvider = ({ children }) => {
   const [classes, setClasses] = useState([]);
+  const [classUser, setClassUser] = useState([]);
 
   const token = JSON.parse(localStorage.getItem("@ClassApp:token")) || null;
 
   const getStudent = (courseSelected, setLoaded) => {
-    const filteredClasses = classes.filter(
-      (element) => courseSelected === element.coursesId && element.studentList
+    setClassUser(
+      classes.filter(
+        (element) => courseSelected === element.coursesId && element.studentList
+      )
     );
 
     let students = [];
-    console.log(filteredClasses);
-    for (let i = 0; i < filteredClasses.length; i++) {
-      filteredClasses[i].studentList.forEach((student) => {
+    console.log(classUser);
+    for (let i = 0; i < classUser.length; i++) {
+      classUser[i].studentList.forEach((student) => {
         if (!students.includes(student)) {
           api
             .get(`/users/${student}`, {

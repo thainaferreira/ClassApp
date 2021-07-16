@@ -18,7 +18,7 @@ export const WEEKDAYS = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
 export const getCourseDays = ({ daysOfWeek, totalHours, hoursPerDay }) => {
   totalHours = Number(totalHours);
   hoursPerDay = Number(hoursPerDay);
-
+  console.log(daysOfWeek);
   daysOfWeek = daysOfWeek.map((el) =>
     WEEKDAYS.findIndex((weekDay) => weekDay === el)
   );

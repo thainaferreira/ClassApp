@@ -17,6 +17,7 @@ import { useState, useEffect } from "react";
 const Calendar = ({ courses }) => {
   const [actualDay, setActualDay] = useState(new Date());
   const [mappedMonth, setMappedMonth] = useState();
+  console.log(courses);
 
   const handleNext = () => {
     const next = actualDay;
